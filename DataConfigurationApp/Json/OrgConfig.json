@@ -1,0 +1,210 @@
+{
+  "organization": {
+    "id": 1,
+    "name": "My organisation",
+    "description": "Configuration for an organization for development purposes.",
+    "configuredBy": "Firstname Lastname",
+    "configuredAt": "2020-03-15T15:00:00"
+  },
+  "configuration": {
+    "actions": [
+      {
+        "name": "Refresh data",
+        "description": "This action - 1. Invokes an Azure Function - 2. Excecutes a Stored Procedure on Azure SQL Database - 3. Makes a REST API request.",
+        "visible": true,
+        "steps": [
+          {
+            "step": 1,
+            "name": "Invoke Azure Function",
+            "onFailure": "Quit",
+            "enabled": true
+          },
+          {
+            "step": 2,
+            "name": "Excecute Stored Procedure",
+            "onFailure": "Quit",
+            "enabled": true
+          },
+          {
+            "step": 3,
+            "name": "Makes REST API request",
+            "onFailure": "Quit",
+            "enabled": true
+          }
+        ],
+        "http": [
+          {
+            "step": 1,
+            "method": "post",
+            "url": "https://<functionapp>.azurewebsites.net/api/Function2?code=<code>"
+          },
+          {
+            "step": 3,
+            "method": "post",
+            "url": "https://<functionapp>.azurewebsites.net/api/Function2?code=<code>"
+          }
+        ],
+        "azureSql": [
+          {
+            "step": 2,
+            "type": "storedProcedure",
+            "commandText": "dbo.MyStoredProcedure",
+            "connectionString": "Server=tcp:myserver.database.windows.net,1433;Database=myDataBase;User ID=mylogin@myserver;Password=myPassword;Trusted_Connection=False;Encrypt=True;"
+          }
+        ]
+      },
+      {
+        "name": "Something else...",
+        "description": "Another action that does something else...",
+        "visible": true,
+        "steps": []
+      }
+    ],
+    "databases": [
+      {
+        "displayName": "My config database",
+        "connectionString": "Server=tcp:myserver.database.windows.net,1433;Database=myDataBase;User ID=mylogin@myserver;Password=myPassword;Trusted_Connection=False;Encrypt=True;",
+        "enabled": true,
+        "tables": [
+          {
+            "table": "config.Client",
+            "displayName": "Client",
+            "allowRowInsert": true,
+            "allowRowDelete": true,
+            "columns": [
+              {
+                "column": "ClientID",
+                "displayName": "Id",
+                "dataType": "int",
+                "allowNulls": false,
+                "identity": true,
+                "inputType": "Cell",
+                "visible": false,
+                "enabled": false
+              },
+              {
+                "column": "Name",
+                "displayName": "Client name",
+                "dataType": "nvarchar(100)",
+                "allowNulls": false,
+                "identity": false,
+                "inputType": "Cell",
+                "visible": true,
+                "enabled": true
+              }
+            ],
+            "primaryKeys": [
+              {
+                "column": "ClientID"
+              }
+            ],
+            "foreignKeys": [],
+            "uniqueKeys": [
+              {
+                "columns": [
+                  {
+                    "column": "Name"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "table": "config.RetailerStore",
+            "displayName": "Retailer store",
+            "allowRowInsert": true,
+            "allowRowDelete": true,
+            "columns": [
+              {
+                "column": "RetailerStoreID",
+                "displayName": "Id",
+                "dataType": "int",
+                "allowNulls": false,
+                "identity": true,
+                "inputType": "Cell",
+                "visible": true,
+                "enabled": false
+              },
+              {
+                "column": "ClientID",
+                "displayName": "Client",
+                "dataType": "int",
+                "allowNulls": false,
+                "identity": false,
+                "inputType": "DropDown",
+                "visible": true,
+                "enabled": true
+              },
+              {
+                "column": "RetailerID",
+                "displayName": "Retailer",
+                "dataType": "int",
+                "allowNulls": false,
+                "identity": false,
+                "inputType": "DropDown",
+                "visible": true,
+                "enabled": true
+              },
+              {
+                "column": "RetailerStoreNo",
+                "displayName": "Retailer store no",
+                "dataType": "int",
+                "allowNulls": false,
+                "identity": false,
+                "inputType": "Cell",
+                "visible": true,
+                "enabled": true
+              },
+              {
+                "column": "Name",
+                "displayName": "Store name",
+                "dataType": "nvarchar(50)",
+                "allowNulls": true,
+                "identity": false,
+                "inputType": "Cell",
+                "visible": true,
+                "enabled": true
+              }
+            ],
+            "primaryKeys": [
+              {
+                "column": "RetailerStoreID"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "foreignKeyColumn": "ClientID",
+                "primaryKeyTable": "config.Client",
+                "primaryKeyColumn": "ClientID",
+                "displayTable": "config.Client",
+                "displayColumn": "Name"
+              },
+              {
+                "foreignKeyColumn": "RetailerStoreID",
+                "primaryKeyTable": "config.Retailer",
+                "primaryKeyColumn": "RetailerID",
+                "displayTable": "config.Retailer",
+                "displayColumn": "Name"
+              }
+            ],
+            "uniqueKeys": [
+              {
+                "columns": [
+                  {
+                    "column": "ClientID"
+                  },
+                  {
+                    "column": "RetailerID"
+                  },
+                  {
+                    "column": "RetailerStoreNo"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
