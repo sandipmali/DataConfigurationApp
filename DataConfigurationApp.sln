@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConfiguration.Business"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConfiuguration.Parser", "DataConfiuguration.Parser\DataConfiuguration.Parser.csproj", "{05E24B71-7FD3-414A-AFAD-16044EAD163F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConfiguration.DAL", "DataConfiguration.DAL\DataConfiguration.DAL.csproj", "{45362C45-6694-48F9-9993-0D23348415BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{05E24B71-7FD3-414A-AFAD-16044EAD163F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E24B71-7FD3-414A-AFAD-16044EAD163F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E24B71-7FD3-414A-AFAD-16044EAD163F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45362C45-6694-48F9-9993-0D23348415BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45362C45-6694-48F9-9993-0D23348415BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45362C45-6694-48F9-9993-0D23348415BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45362C45-6694-48F9-9993-0D23348415BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{EB4502DE-07AA-4A7E-A53B-81B60DF6714E} = {A0BFFC4D-4438-41F2-8096-3AB7F6F6D701}
 		{05E24B71-7FD3-414A-AFAD-16044EAD163F} = {A0BFFC4D-4438-41F2-8096-3AB7F6F6D701}
+		{45362C45-6694-48F9-9993-0D23348415BF} = {A0BFFC4D-4438-41F2-8096-3AB7F6F6D701}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB8C2966-B710-44D9-9026-6AF84B991E19}

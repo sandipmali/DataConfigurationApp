@@ -36,12 +36,12 @@
           {
             "step": 1,
             "method": "post",
-            "url": "https://<functionapp>.azurewebsites.net/api/Function2?code=<code>"
+            "url": "https://loadconfigurationapp.azurewebsites.net/api/LoadConfigurationFunction?code=6GEFXn2B3RA0aPeifULIYSZ874hUj95Bal89wymsRe1RDP3Aj72SBA=="
           },
           {
             "step": 3,
             "method": "post",
-            "url": "https://<functionapp>.azurewebsites.net/api/Function2?code=<code>"
+            "url": "https://loadconfigurationapp.azurewebsites.net/api/LoadConfigurationFunction?code=6GEFXn2B3RA0aPeifULIYSZ874hUj95Bal89wymsRe1RDP3Aj72SBA=="
           }
         ],
         "azureSql": [

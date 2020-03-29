@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace DataConfigurationApp.Model
@@ -33,12 +34,21 @@ namespace DataConfigurationApp.Model
         public string connectionString { get; set; }
     }
 
+    public class step
+    {
+        [JsonProperty("step")]
+        public int stepNumber { get; set; }
+        public string name { get; set; }
+        public string onFailure { get; set; }
+        public bool enabled { get; set; }
+    }
+
     public class Action
     {
         public string name { get; set; }
         public string description { get; set; }
         public bool visible { get; set; }
-        public List<object> steps { get; set; }
+        public List<step> steps { get; set; }
         public List<Http> http { get; set; }
         public List<AzureSql> azureSql { get; set; }
     }

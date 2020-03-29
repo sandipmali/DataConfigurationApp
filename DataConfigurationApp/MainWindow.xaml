@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <StackPanel VerticalAlignment="Center" 
+                    HorizontalAlignment="Center">
+            <Button Content="Run"
+                    Height="30px"
+                    Width="100px"
+                    Click="Button_Click"
+                    IsEnabled="{Binding Path=IsEnabled,Mode=TwoWay}"
+                    >
+
+            </Button>
+        </StackPanel>
 
     </Grid>
 </Window>

@@ -1,8 +1,13 @@
 ﻿using DataConfiguration.Business.Engines;
 using DataConfiguration.Business.Engines.Interfaces;
+using DataConfiguration.Business.Services;
+using DataConfigurationApp.ViewModel;
 using DataConfiuguration.Parser;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
+using DataConfiguration.DAL;
+using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataConfigurationApp
 {
@@ -25,6 +30,9 @@ namespace DataConfigurationApp
             services.AddSingleton<MainWindow>();
             services.AddSingleton<JsonParser>();
             services.AddScoped<IActionDataEngine, ActionDataEngine>();
+            services.AddScoped<IRestClientService, RestClientService>();
+            services.AddSingleton<ActionViewModel>();
+            services.AddDbContext<DataConfigurationContext>();
         }
 
         private void OnStartup(object sender, StartupEventArgs e)

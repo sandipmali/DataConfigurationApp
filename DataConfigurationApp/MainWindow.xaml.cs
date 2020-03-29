@@ -1,5 +1,7 @@
 ﻿using DataConfiguration.Business.Engines.Interfaces;
 using DataConfigurationApp.Model;
+using DataConfigurationApp.ViewModel;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,10 +26,45 @@ namespace DataConfigurationApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(IActionDataEngine actionDataEngine)
+        private readonly IActionDataEngine actionDataEngine;
+        private readonly ActionViewModel actionViewModel;
+        private readonly ILogger<MainWindow> logger;
+
+        public MainWindow(IActionDataEngine actionDataEngine,
+            ActionViewModel actionViewModel,
+            ILogger<MainWindow> logger)
         {
             InitializeComponent();
-            actionDataEngine.ExecuteActions();
+            DataContext = actionViewModel;
+            this.actionDataEngine = actionDataEngine;
+            this.actionViewModel = actionViewModel;
+            this.logger = logger;
+            IsEnable(true);
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            IsEnable(false);
+
+            await Task.Run(() =>
+             {
+                 try
+                 {
+                     actionDataEngine.ExecuteAction("Refresh data");
+                 }
+                 catch (Exception ex)
+                 {
+                     logger.LogError(ex, ex.Message, ex.StackTrace);
+                 }
+             });
+
+            IsEnable(true);
+        }
+
+        private void IsEnable(bool isEnabled)
+        {
+            actionViewModel.IsEnabled = isEnabled;
+
         }
     }
 }
