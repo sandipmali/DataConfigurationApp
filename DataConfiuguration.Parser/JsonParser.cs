@@ -3,14 +3,14 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 
-namespace DataConfigurationApp.Parser
+namespace DataConfiuguration.Parser
 {
-    public static class JsonParser
+    public class JsonParser
     {
-        public static Organization Organization { get; set; }
-        public static Configuration Configuration { get; set; }
+        public Organization Organization { get; }
+        public Configuration Configuration { get; }
 
-        static JsonParser()
+        public JsonParser()
         {
             var data = GetOrgConfigData();
 

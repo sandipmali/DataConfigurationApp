@@ -1,5 +1,5 @@
-﻿using DataConfigurationApp.Model;
-using DataConfigurationApp.Parser;
+﻿using DataConfiguration.Business.Engines.Interfaces;
+using DataConfigurationApp.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,11 +24,10 @@ namespace DataConfigurationApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IActionDataEngine actionDataEngine)
         {
             InitializeComponent();
-
-            var config = JsonParser.Configuration;
+            actionDataEngine.ExecuteActions();
         }
     }
 }
