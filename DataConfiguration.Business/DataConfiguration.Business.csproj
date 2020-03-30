@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataConfiguration.DAL\DataConfiguration.DAL.csproj" />
     <ProjectReference Include="..\DataConfiuguration.Parser\DataConfiuguration.Parser.csproj" />
   </ItemGroup>
 

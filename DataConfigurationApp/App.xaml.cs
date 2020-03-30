@@ -5,9 +5,7 @@ using DataConfigurationApp.ViewModel;
 using DataConfiuguration.Parser;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
-using DataConfiguration.DAL;
-using System;
-using Microsoft.EntityFrameworkCore;
+using DataConfiguration.DAL.Repository;
 
 namespace DataConfigurationApp
 {
@@ -32,7 +30,8 @@ namespace DataConfigurationApp
             services.AddScoped<IActionDataEngine, ActionDataEngine>();
             services.AddScoped<IRestClientService, RestClientService>();
             services.AddSingleton<ActionViewModel>();
-            services.AddDbContext<DataConfigurationContext>();
+            services.AddScoped<IActionRepository, ActionRepository>();
+
         }
 
         private void OnStartup(object sender, StartupEventArgs e)

@@ -1,15 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace DataConfiguration.DAL
 {
     public class DataConfigurationContext : DbContext
     {
-        public DataConfigurationContext([NotNull] DbContextOptions options)
-            : base(options)
+        public DataConfigurationContext(string connectionString) :
+            base(GetOptions(connectionString))
         {
+        }
 
+        private static DbContextOptions GetOptions(string connectionString)
+        {
+            return new DbContextOptionsBuilder().UseSqlServer(connectionString).Options;
         }
     }
 }

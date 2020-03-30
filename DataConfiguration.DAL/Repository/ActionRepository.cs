@@ -1,24 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace DataConfiguration.DAL.Repository
 {
-    public class ActionRepository : IActionRepository
-    {
-        private readonly DataConfigurationContext dataConfigurationContext;
+    public class ActionRepository : IActionRepository{
 
-        public ActionRepository(DataConfigurationContext dataConfigurationContext)
+
+        public async Task ExecuteSp(DbContext context, string name, params object[] inputParams)
         {
-            this.dataConfigurationContext = dataConfigurationContext;
-        }
+            if (context == null) throw new Exception("DataConfigurationContext Null");
 
-        public async void ExecuteSp(string connectionString, string name, params object[] inputParams)
-        {
-
-            await dataConfigurationContext.Database.OpenConnectionAsync();
-            await dataConfigurationContext.Database.ExecuteSqlRawAsync($"EXEC {name}");
+            await context.Database.OpenConnectionAsync();
+            await context.Database.ExecuteSqlRawAsync($"EXEC {name}");
 
         }
     }

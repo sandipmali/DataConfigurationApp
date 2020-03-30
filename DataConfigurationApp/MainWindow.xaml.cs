@@ -1,44 +1,28 @@
 ﻿using DataConfiguration.Business.Engines.Interfaces;
-using DataConfigurationApp.Model;
 using DataConfigurationApp.ViewModel;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DataConfigurationApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private readonly IActionDataEngine actionDataEngine;
-        private readonly ActionViewModel actionViewModel;
-        private readonly ILogger<MainWindow> logger;
+        private readonly IActionDataEngine _actionDataEngine;
+        private readonly ActionViewModel _actionViewModel;
 
         public MainWindow(IActionDataEngine actionDataEngine,
-            ActionViewModel actionViewModel,
-            ILogger<MainWindow> logger)
+            ActionViewModel actionViewModel)
         {
             InitializeComponent();
             DataContext = actionViewModel;
-            this.actionDataEngine = actionDataEngine;
-            this.actionViewModel = actionViewModel;
-            this.logger = logger;
+            _actionDataEngine = actionDataEngine;
+            _actionViewModel = actionViewModel;
+
             IsEnable(true);
         }
 
@@ -50,11 +34,11 @@ namespace DataConfigurationApp
              {
                  try
                  {
-                     actionDataEngine.ExecuteAction("Refresh data");
+                     _actionDataEngine.ExecuteAction("Refresh data");
                  }
                  catch (Exception ex)
                  {
-                     logger.LogError(ex, ex.Message, ex.StackTrace);
+                     //_logger.LogError(ex, ex.Message, ex.StackTrace);
                  }
              });
 
@@ -63,7 +47,7 @@ namespace DataConfigurationApp
 
         private void IsEnable(bool isEnabled)
         {
-            actionViewModel.IsEnabled = isEnabled;
+            _actionViewModel.IsEnabled = isEnabled;
 
         }
     }
